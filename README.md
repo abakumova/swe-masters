@@ -5,7 +5,7 @@ Tasks/projects across courses in the Software Engineering masters program
 - Systems Modelling [MTAT.03.083](https://courses.cs.ut.ee/2022/systemsmodelling/fall)
 - [Software Quality and Standards](https://github.com/abakumova/swe-masters/tree/main/software-quality-and-standards) [IDY0204](https://ois2.ttu.ee/uusois/subject/IDY0204)
 2. Spring 2023
-- Enterprise System Integration [MTAT.03.229](https://courses.cs.ut.ee/2023/esi/spring)
+- [Enterprise System Integration](https://github.com/abakumova/enterprise-system-integration) [MTAT.03.229](https://courses.cs.ut.ee/2023/esi/spring)
 - Cloud Computing [LTAT.06.008](https://courses.cs.ut.ee/2023/cloud/spring)
 - System Administration [LTAT.06.003](https://courses.cs.ut.ee/2023/sa/spring)
 - Business Process Management [MTAT.03.231](https://courses.cs.ut.ee/2023/bpm/spring)
