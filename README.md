@@ -10,7 +10,7 @@ Tasks/projects across courses in the Software Engineering masters program
 - System Administration [LTAT.06.003](https://courses.cs.ut.ee/2023/sa/spring)
 - Business Process Management [MTAT.03.231](https://courses.cs.ut.ee/2023/bpm/spring)
 - Software Product Management [MTAT.03.325](https://courses.cs.ut.ee/2023/spm/spring)
-- Big Data Management LTAT.02.003
+- [Big Data Management](https://github.com/abakumova/big-data-management) LTAT.02.003
 - Advanced Databases LTAT.02.010
 - Seminar on Enterprise Software: Master's Seminar [MTAT.03.270](https://courses.cs.ut.ee/2023/enterprise-seminar1/spring)
 
