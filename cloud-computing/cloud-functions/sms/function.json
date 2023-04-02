@@ -1,0 +1,22 @@
+{
+  "bindings": [
+    {
+      "type": "cosmosDBTrigger",
+      "name": "documents",
+      "direction": "in",
+      "leaseCollectionName": "leases",
+      "connectionStringSetting": "lab4abakumovaut_DOCUMENTDB",
+      "databaseName": "messagesdb",
+      "collectionName": "messages",
+      "createLeaseCollectionIfNotExists": true
+    },
+    {
+      "name": "message",
+      "accountSidSetting": "AccountSidSetting",
+      "authTokenSetting": "AuthTokenSetting",
+      "from": "+127",
+      "direction": "out",
+      "type": "twilioSms"
+    }
+  ]
+}
