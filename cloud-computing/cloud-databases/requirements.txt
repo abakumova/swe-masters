@@ -1,0 +1,4 @@
+# this file defines the pip packages neede by this application
+flask==2.0.2
+azure-storage-blob==12.3.1
+azure-cosmos

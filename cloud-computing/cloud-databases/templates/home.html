@@ -1,0 +1,23 @@
+<!doctype html>
+<!-- This is a Jinja based template. To read more about Jinja, check
+ https://jinja.palletsprojects.com/en/3.0.x/  -->
+<title>Message board</title>
+<body>
+    <h4>There are {{ messages|length }} messages on the board.</h4>
+    <h1>Viktoriia Abakumova</h1>
+    <h4> Here are the last 10:</h4>
+    <ul>
+        {% for m in messages[-2:]|reverse %}
+            <li>
+                "{{m.content}}" <small>Posted on {{m.timestamp}}</small><img src={{ m.img_path }}>
+            </li>
+        {% endfor %}
+    </ul>
+    <h4> Enter a new message</h4>
+    <form method="post" enctype=multipart/form-data>
+        <label >Your message:</label><br>
+        <input type="file" name="file"><br>
+	<input type="text" name="msg"><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
