@@ -1,0 +1,113 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-deployment
+spec:
+  selector:
+    matchLabels:
+      app: flask
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: flask
+    spec:
+      containers:
+        - name: flask
+          image: abakumovaut/flask1.0
+          ports:
+            - containerPort: 5000
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret-config
+                  key: username
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret-config
+                  key: password
+            - name: DATABASE_URL
+              value: postgresql://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@postgresql:5432/postgres
+          livenessProbe:
+            initialDelaySeconds: 8
+            httpGet:
+              path: /
+              port: 5000
+          readinessProbe:
+            initialDelaySeconds: 8
+            httpGet:
+              path: /?msg=Hello
+              port: 5000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+spec:
+  selector:
+    matchLabels:
+      app: postgres
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgresql
+          image: postgres:14.1-alpine
+          ports:
+            - containerPort: 5432
+          env:
+          - name: POSTGRES_USER
+            valueFrom:
+              secretKeyRef:
+                name: postgres-secret-config
+                key: username
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: postgres-secret-config
+                key: password
+          - name: PGDATA
+            value: /var/lib/postgresql/data/pgdata
+          volumeMounts:
+            - name: data-storage-volume
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: data-storage-volume
+          persistentVolumeClaim:
+            claimName: postgres-db-claim
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-flask
+spec:
+  type: LoadBalancer
+  selector:
+
+    app: flask
+  ports:
+  - protocol: TCP
+    port: 5000
+    targetPort: 5000
+    name: tcp-5000
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgresql
+  labels:
+    name: postgresql
+spec:
+  selector:
+    app: postgres
+  ports:
+  - port: 5432
